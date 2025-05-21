@@ -1,5 +1,6 @@
-export default function StarButton(){
+export default function StarButton({value,isSelected,onClick}){
     return (
-        <button className="star"> </button>
+        <button className={`star ${isSelected ? "selected" : ""}`}
+      onClick={onClick}> ★ </button>
     )
 }

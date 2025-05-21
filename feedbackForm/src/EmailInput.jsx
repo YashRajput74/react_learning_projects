@@ -1,5 +1,5 @@
-export default function EmailInput(){
+export default function EmailInput({emailValue,emailFunction}){
     return (
-        <input type="email" name="" id="" placeholder="abc@gmail.com"/>
+        <input type="email" placeholder="abc@gmail.com" value={emailValue} onChange={emailFunction}/>
     )
 }

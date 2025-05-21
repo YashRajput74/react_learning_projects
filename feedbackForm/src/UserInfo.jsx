@@ -1,11 +1,11 @@
 import EmailInput from "./EmailInput";
 import NameInput from "./NameInput";
 
-export default function UserInfo(){
+export default function UserInfo({nameValue,emailValue,nameFunction,emailFunction}){
     return (
         <div className="userInfo">
-            <NameInput />
-            <EmailInput />
+            <NameInput nameValue={nameValue} nameFunction={nameFunction}/>
+            <EmailInput emailValue={emailValue} emailFunction={emailFunction}/>
         </div>
     )
 }
