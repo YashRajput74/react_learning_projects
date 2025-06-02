@@ -1,0 +1,24 @@
+.app-layout {
+    display: flex;
+}
+
+aside {
+    width: 250px;
+    background-color: #f0f0f0;
+    padding: 1rem;
+}
+
+main {
+    flex: 1;
+    padding: 1rem;
+    position: relative;
+}
+
+.player {
+    position: sticky;
+    bottom: 0;
+    background: #222;
+    color: white;
+    padding: 0.5rem;
+    text-align: center;
+}
