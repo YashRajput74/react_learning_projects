@@ -7,3 +7,13 @@ body.dark {
     background-color: #121212;
     color: white;
 }
+
+body .qEleven.light{
+    background-color: white;
+    color: black;
+}
+
+body .qEleven.dark{
+    background-color: #121212;
+    color: white;
+}

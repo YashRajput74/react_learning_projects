@@ -9,6 +9,9 @@ import QuestionThree from "./Questions1to5/QuestionThree";
 import QuestionTwo from "./Questions1to5/QuestionTwo";
 import "./App.css"
 import QuestionTen from "./Question6to10/QuestionTen";
+import QuestionEleven from "./Question11to15/QuestionEleven";
+import QuestionThirteen from "./Question11to15/QuestionThirteen";
+import QuestionTwelve from "./Question11to15/QuestionTwelve";
 export default function App() {
     return (
         <>
@@ -88,6 +91,38 @@ export default function App() {
                     - Use useEffect to add an event listener for 'mousemove'. Update the X and Y position in state and display them on screen. Clean up the listener when the component unmounts.
                 </p>
                 <QuestionTen />
+            </div>
+            <hr />
+            <div>
+                <p>
+                    11. Sync user preferences (like theme) with localStorage
+                    - When the user selects a theme, store it in localStorage. Use useEffect to read from localStorage on component mount and apply the stored theme if available.
+                </p>
+                <QuestionEleven />
+            </div>
+            <hr />
+            <div>
+                <p>
+                    12. Auto-save form input to localStorage after delay
+                    - Create a form input. Every time the user types, wait a short delay (e.g., 1 second) and then save the input value to localStorage using useEffect.
+                </p>
+                <QuestionTwelve />
+            </div>
+            <hr />
+            <div>
+                <p>
+                    13. Create a countdown timer with useEffect
+                    - Start a countdown from a certain number (e.g., 10). Use useEffect with setInterval to decrease the number every second, and clear the interval when it reaches 0.
+                </p>
+                <QuestionThirteen />
+            </div>
+            <hr />
+            <div>
+                <p>
+                    14. Toggle a component’s visibility and log mount/unmount events
+                    - Use a button to toggle showing and hiding a child component. Inside the child component, use useEffect to log messages when it mounts and when it unmounts (with cleanup).
+                </p>
+
             </div>
             <hr />
         </>
