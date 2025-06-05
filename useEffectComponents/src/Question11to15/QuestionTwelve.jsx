@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
 export default function QuestionTwelve() {
-    const [city, setCity] = useState("");
+    const [city, setCity] = useState(localStorage.getItem("city")|| "");
     const [storedCity, setStoredCity] = useState("");
     function handleChange(e) {
         setCity(e.target.value);

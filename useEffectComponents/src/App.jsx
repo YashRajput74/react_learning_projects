@@ -12,6 +12,8 @@ import QuestionTen from "./Question6to10/QuestionTen";
 import QuestionEleven from "./Question11to15/QuestionEleven";
 import QuestionThirteen from "./Question11to15/QuestionThirteen";
 import QuestionTwelve from "./Question11to15/QuestionTwelve";
+import QuestionFourteen from "./Question11to15/QuestionFourteen";
+import QuestionFifteen from "./Question11to15/QuestionFifteen";
 export default function App() {
     return (
         <>
@@ -122,9 +124,16 @@ export default function App() {
                     14. Toggle a component’s visibility and log mount/unmount events
                     - Use a button to toggle showing and hiding a child component. Inside the child component, use useEffect to log messages when it mounts and when it unmounts (with cleanup).
                 </p>
-
+                <QuestionFourteen />
             </div>
             <hr />
+            <div>
+                <p>
+                    15. Sync state across browser tabs using the 'storage' event
+                    - Use localStorage to store a value like theme or a note. Use useEffect with a 'storage' event listener to detect changes to that value in other browser tabs and update the current tab’s state.
+                </p>
+                <QuestionFifteen />
+            </div>
         </>
 
     )
