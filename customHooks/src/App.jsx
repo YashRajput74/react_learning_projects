@@ -5,8 +5,8 @@ import Parent from "./Parent";
 export default function App() {
     return (
         <>
-            {/* <DebounceTesting /> */}
-            {/* useGeolocation,usefetch, useLocalStorage, useSessionStorage, useWindowResize, useDebounce, useThrottle , useForm , useValidation, */}
+            <DebounceTesting />
+            {/* useGeolocation,usefetch, useLocalStorage, useSessionStorage, useWindowResize, useDebounce, useThrottle , useForm , useValidation, useHistory, useQuery */}
             <Parent />
             <Dashboard />
         </>
