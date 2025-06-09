@@ -12,3 +12,10 @@ export default function App() {
         </div>
     );
 }
+
+/* 
+Imagine you’re decorating a room before guests arrive.
+useInsertionEffect puts up the wallpaper before anyone sees it.
+useLayoutEffect arranges the furniture right after the wallpaper’s up.
+useEffect tweaks stuff after everyone’s walked in.
+*/

@@ -1,16 +1,16 @@
 import { useId } from 'react';
 
 export function UseId() {
-  // Generate a unique, stable ID for this component
-  const id = useId();
+    // Generate a unique, stable ID for this component
+    const id = useId();
 
-  return (
-    <div>
-      {/* Link the label and input using the generated ID */}
-      <label htmlFor={id}>Your Name: </label>
-      <input id={id} type="text" name="name" />
-    </div>
-  );
+    return (
+        <div>
+            {/* Link the label and input using the generated ID */}
+            <label htmlFor={id}>Your Name: </label>
+            <input id={id} type="text" name="name" />
+        </div>
+    );
 }
 
 
