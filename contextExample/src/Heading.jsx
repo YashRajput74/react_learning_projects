@@ -16,6 +16,7 @@ export default function Heading({ children }) {
             return <h5>{children}</h5>;
         case 6:
             return <h6>{children}</h6>;
-        default: return <p>{children}</p>;
+        default:
+            return <p>{children}</p>;
     }
 }
