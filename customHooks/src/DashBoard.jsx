@@ -3,7 +3,6 @@ import React, { useCallback, useState } from 'react';
 import UserProfile from './UserProfile';
 import NotificationsList from './NotificationsList';
 import FilterBar from './FilterBar';
-import UsersListl from './UsersList';
 import UsersList from './UsersList';
 
 const Dashboard = () => {
