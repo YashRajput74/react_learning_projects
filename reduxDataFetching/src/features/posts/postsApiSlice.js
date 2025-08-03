@@ -12,4 +12,4 @@ export const postsApi = createApi({
     refetchOnFocus: true,
 });
 
-export const { useGetPostsQuery } = postsApi;
+export const { useGetPostsQuery } = postsApi;//this is a hook....

@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-export const fetchUserById = createAsyncThunk(
+export const fetchUserById = createAsyncThunk(//for using async functiona 
     'user/fetchUserById',
     async (id) => {
         const res = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
