@@ -5,10 +5,10 @@ const initialState = {
     user: null
 };
 
-const authSlice = createSlice({
+const authSlice = createSlice({//to create a slice
     name: 'auth',
-    initialState,
-    reducers: {
+    initialState,//for initialization
+    reducers: {//for changing the initial data
         login: (state, action) => {
             state.isAuthenticated = true;
             state.user = action.payload;
@@ -20,5 +20,5 @@ const authSlice = createSlice({
     }
 });
 
-export const { login, logout } = authSlice.actions;
-export default authSlice.reducer;
+export const { login, logout } = authSlice.actions;//for components
+export default authSlice.reducer;//for store
