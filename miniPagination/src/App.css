@@ -1,0 +1,41 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h2{
+    margin: 1rem;
+}
+
+.page{
+    height: 300px;
+    border: 1px solid black;
+    margin: 2rem;
+    padding: 15px;
+}
+
+.grid{
+    border: 1px solid blue;
+}
+
+/* .grid div:nth-child(3){
+    height: 70px;
+} */
+
+.sections{
+    margin: 10px;
+    border: 1px solid red;
+    height: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.measure-page {
+  visibility: hidden;
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  height: auto !important;
+}
