@@ -18,56 +18,68 @@ const allSections = generateSections(20);
 const PAGE_HEIGHT = 300;
 
 export default function App() {
-    const [pages, setPages] = useState([[]]);
-    const containerRefs = useRef([]);
+    const [pages, setPages] = useState([]);
+    const measureContainerRef = useRef(null);
+    const sectionRefs = useRef([]);
 
     useEffect(() => {
-        const pageElements = containerRefs.current;
-        if (!pageElements.length) return;
+        const measureContainer = measureContainerRef.current;
+        if (!measureContainer) return;
 
-        const newPages = [[]];
-        let currentPageIndex = 0;
+        const heights = sectionRefs.current.map((el) => {
+            if (!el) return 0;
 
-        let observer = new ResizeObserver(() => {
-            newPages.length = 1;
-            currentPageIndex = 0;
+            const rect = el.getBoundingClientRect();
+            const style = window.getComputedStyle(el);
+            const marginTop = parseFloat(style.marginTop || "0");
+            const marginBottom = parseFloat(style.marginBottom || "0");
 
-            let tempPage = [];
-            let currentHeight = 0;
-
-            allSections.forEach((section) => {
-                const heightWithMargin = section.height + 20;
-
-                if (currentHeight + heightWithMargin > PAGE_HEIGHT) {
-                    newPages.push([]);
-                    currentPageIndex++;
-                    currentHeight = 0;
-                }
-
-                newPages[currentPageIndex].push(section);
-                currentHeight += heightWithMargin;
-            });
-
-            setPages([...newPages]);
+            return rect.height + marginTop + marginBottom;
         });
 
-        if (pageElements[0]) {
-            observer.observe(pageElements[0]);
+        const newPages = [];
+        let currentPage = [];
+        let currentHeight = 0;
+
+        allSections.forEach((section, i) => {
+            const sectionHeight = heights[i];
+
+            if (currentHeight + sectionHeight > PAGE_HEIGHT) {
+                newPages.push(currentPage);
+                currentPage = [];
+                currentHeight = 0;
+            }
+
+            currentPage.push(section);
+            currentHeight += sectionHeight;
+        });
+
+        if (currentPage.length > 0) {
+            newPages.push(currentPage);
         }
 
-        return () => observer.disconnect();
+        setPages(newPages);
     }, []);
 
     return (
         <div>
-            <h2>Pagination with ResizeObserver</h2>
+            <h2>Pagination (Measured Margins)</h2>
+
+            <div className="measure-page" ref={measureContainerRef}>
+                {allSections.map((section, index) => (
+                    <div
+                        key={section.id}
+                        className="sections"
+                        style={{ height: section.height }}
+                        ref={(el) => (sectionRefs.current[index] = el)}
+                    >
+                        {section.title} ({section.height}px)
+                    </div>
+                ))}
+            </div>
 
             {pages.map((sections, pageIndex) => (
-                <div
-                    className="page"
-                    key={pageIndex}
-                    ref={(el) => (containerRefs.current[pageIndex] = el)}
-                >
+                <div className="page" key={pageIndex}>
                     {sections.map((section) => (
                         <div
                             key={section.id}

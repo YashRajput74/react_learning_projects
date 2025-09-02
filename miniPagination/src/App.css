@@ -1,34 +1,35 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 h2 {
-  margin: 1rem;
+    margin: 1rem;
 }
 
 .page {
-  height: 300px;
-  border: 1px solid black;
-  margin: 2rem;
-  overflow: hidden;
-  padding: 10px;
+    height: 300px;
+    border: 1px solid black;
+    margin: 2rem;
+    overflow: hidden;
+    padding: 10px;
 }
 
 .sections {
-  margin: 10px 0;
-  border: 1px solid red;
-  display: flex;
-  align-items: center;
-  padding: 0 10px;
-  background: #f9f9f9;
+    margin: 10px 0;
+    border: 1px solid red;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    background: #f9f9f9;
 }
 
 .measure-page {
-  height: 0;
-  overflow: hidden;
-  opacity: 0;
-  pointer-events: none;
-  position: absolute;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
 }
