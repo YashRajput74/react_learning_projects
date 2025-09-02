@@ -19,60 +19,64 @@ export default function App() {
     const measureRef = useRef(null);
 
     useEffect(() => {
-        if (!measureRef.current) return;
+        const measureContainer = measureRef.current;
+        if (!measureContainer) return;
 
-        const pageHeight = 300;
-        const sectionElements = Array.from(
-            measureRef.current.querySelectorAll(".sections")
-        );
+        const PAGE_HEIGHT = 300;
+        const usableHeight = PAGE_HEIGHT;
 
+        const measuringArea = measureContainer.querySelector(".measure-grid");
+        measuringArea.innerHTML = "";
+
+        let pages = [];
         let currentPage = [];
-        let allPages = [];
-        let accumulatedHeight = 0;
 
-        sectionElements.forEach((el, index) => {
-            const sectionHeight = el.offsetHeight + parseFloat(getComputedStyle(el).marginTop) + parseFloat(getComputedStyle(el).marginBottom);
+        const tempSections = [];
 
-            if (accumulatedHeight + sectionHeight > pageHeight) {
-                allPages.push(currentPage);
-                currentPage = [allSections[index]];
-                accumulatedHeight = sectionHeight;
+        allSections.forEach((section) => {
+            const tempSection = document.createElement("div");
+            tempSection.className = "sections";
+            tempSection.textContent = section.title;
+
+            measuringArea.appendChild(tempSection);
+
+            if (measuringArea.scrollHeight > usableHeight) {
+                measuringArea.removeChild(tempSection);
+
+                pages.push([...currentPage]);
+
+                currentPage = [section];
+
+                measuringArea.innerHTML = "";
+                measuringArea.appendChild(tempSection);
             } else {
-                currentPage.push(allSections[index]);
-                accumulatedHeight += sectionHeight;
+                currentPage.push(section);
             }
         });
 
         if (currentPage.length > 0) {
-            allPages.push(currentPage);
+            pages.push(currentPage);
         }
 
-        setPages(allPages);
-    }, []);
+        setPages(pages);
+    }, [])
+
 
     return (
         <div>
-            <h2>Code sandbox huh</h2>
+            <h2>Pagination Prototype</h2>
 
             <div className="page measure-page" ref={measureRef}>
-                <div className="grid">
-                    {allSections.map((section) => (
+                <div className="measure-grid"></div>
+            </div>
+
+            {pages.map((pageSections, index) => (
+                <div className="page" key={index}>
+                    {pageSections.map((section) => (
                         <div className="sections" key={section.id}>
                             {section.title}
                         </div>
                     ))}
-                </div>
-            </div>
-
-            {pages.map((pageSections, pageIndex) => (
-                <div className="page" key={pageIndex}>
-                    <div className="grid">
-                        {pageSections.map((section) => (
-                            <div className="sections" key={section.id}>
-                                {section.title}
-                            </div>
-                        ))}
-                    </div>
                 </div>
             ))}
         </div>
