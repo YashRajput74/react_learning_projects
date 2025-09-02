@@ -1,41 +1,34 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 h2 {
-    margin: 1rem;
+  margin: 1rem;
 }
 
 .page {
-    height: 300px;
-    border: 1px solid black;
-    margin: 2rem;
-    overflow: hidden;
+  height: 300px;
+  border: 1px solid black;
+  margin: 2rem;
+  overflow: hidden;
+  padding: 10px;
 }
 
 .sections {
-    margin: 10px;
-    border: 1px solid red;
-    height: 30px;
-    display: flex;
-    align-items: center;
-}
-
-.page .sections:nth-child(1){
-    height: 55px;
+  margin: 10px 0;
+  border: 1px solid red;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  background: #f9f9f9;
 }
 
 .measure-page {
-    visibility: hidden;
-    position: absolute;
-    pointer-events: none;
-    top: 0;
-    left: 0;
-    height: auto !important;
-}
-
-.measure-grid {
-    width: 100%;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
 }

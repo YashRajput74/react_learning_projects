@@ -4,77 +4,77 @@ import "./App.css";
 function generateSections(param) {
     const sections = [];
     for (let i = 0; i < param; i++) {
+        const randomHeight = 20 + Math.floor(Math.random() * 100);
         sections.push({
             id: i + 1,
             title: `Section ${i + 1}`,
+            height: randomHeight,
         });
     }
     return sections;
 }
 
 const allSections = generateSections(20);
+const PAGE_HEIGHT = 300;
 
 export default function App() {
-    const [pages, setPages] = useState([]);
-    const measureRef = useRef(null);
+    const [pages, setPages] = useState([[]]);
+    const containerRefs = useRef([]);
 
     useEffect(() => {
-        const measureContainer = measureRef.current;
-        if (!measureContainer) return;
+        const pageElements = containerRefs.current;
+        if (!pageElements.length) return;
 
-        const PAGE_HEIGHT = 300;
-        const usableHeight = PAGE_HEIGHT;
+        const newPages = [[]];
+        let currentPageIndex = 0;
 
-        const measuringArea = measureContainer.querySelector(".measure-grid");
-        measuringArea.innerHTML = "";
+        let observer = new ResizeObserver(() => {
+            newPages.length = 1;
+            currentPageIndex = 0;
 
-        let pages = [];
-        let currentPage = [];
+            let tempPage = [];
+            let currentHeight = 0;
 
-        const tempSections = [];
+            allSections.forEach((section) => {
+                const heightWithMargin = section.height + 20;
 
-        allSections.forEach((section) => {
-            const tempSection = document.createElement("div");
-            tempSection.className = "sections";
-            tempSection.textContent = section.title;
+                if (currentHeight + heightWithMargin > PAGE_HEIGHT) {
+                    newPages.push([]);
+                    currentPageIndex++;
+                    currentHeight = 0;
+                }
 
-            measuringArea.appendChild(tempSection);
+                newPages[currentPageIndex].push(section);
+                currentHeight += heightWithMargin;
+            });
 
-            if (measuringArea.scrollHeight > usableHeight) {
-                measuringArea.removeChild(tempSection);
-
-                pages.push([...currentPage]);
-
-                currentPage = [section];
-
-                measuringArea.innerHTML = "";
-                measuringArea.appendChild(tempSection);
-            } else {
-                currentPage.push(section);
-            }
+            setPages([...newPages]);
         });
 
-        if (currentPage.length > 0) {
-            pages.push(currentPage);
+        if (pageElements[0]) {
+            observer.observe(pageElements[0]);
         }
 
-        setPages(pages);
-    }, [])
-
+        return () => observer.disconnect();
+    }, []);
 
     return (
         <div>
-            <h2>Pagination Prototype</h2>
+            <h2>Pagination with ResizeObserver</h2>
 
-            <div className="page measure-page" ref={measureRef}>
-                <div className="measure-grid"></div>
-            </div>
-
-            {pages.map((pageSections, index) => (
-                <div className="page" key={index}>
-                    {pageSections.map((section) => (
-                        <div className="sections" key={section.id}>
-                            {section.title}
+            {pages.map((sections, pageIndex) => (
+                <div
+                    className="page"
+                    key={pageIndex}
+                    ref={(el) => (containerRefs.current[pageIndex] = el)}
+                >
+                    {sections.map((section) => (
+                        <div
+                            key={section.id}
+                            className="sections"
+                            style={{ height: section.height }}
+                        >
+                            {section.title} ({section.height}px)
                         </div>
                     ))}
                 </div>
